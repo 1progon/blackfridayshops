@@ -1,15 +1,12 @@
 @extends('layouts.layout')
 
 @section('main')
-    <h3>Популярные магазины</h3>
 
-    @forelse($topShops as $shop)
+    @forelse($shops as $shop)
         @include('shop.card', ['category' => $shop->category, $shop])
-
-
     @empty
     @endforelse
 
+    {{$shops->links()}}
 
-    {{$topShops->links()}}
 @endsection

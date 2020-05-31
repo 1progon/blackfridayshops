@@ -14,9 +14,18 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MainController@index');
+
+Route::get('/categories', 'CategoriesController@index');
+Route::get('/shops', 'ShopsController@index');
+
+Route::get('/category/{category}', 'CategoriesController@show')
+    ->name('category');
+
+
+Route::get('/{category}/{shop}', 'ShopsController@show')
+    ->name('shop');
+
 
 Auth::routes();
 
