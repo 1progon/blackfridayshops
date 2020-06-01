@@ -19,6 +19,9 @@ Route::get('/', 'MainController@index');
 Route::get('/categories', 'CategoriesController@index');
 Route::get('/shops', 'ShopsController@index');
 
+Route::get('/admitad', 'AdmitadController@index')->name('admitad');
+Route::get('/admitad/cats', 'AdmitadController@getCategories')->name('admitad.cats');
+
 Route::get('/category/{category}', 'CategoriesController@show')
     ->name('category');
 

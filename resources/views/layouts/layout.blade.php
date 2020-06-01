@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+
+    @yield('head')
+
 
     <title>Главная страница магазинов</title>
 </head>
@@ -16,20 +20,16 @@
 
 
 <div class="row container-fluid">
-    <aside class="col-12 col-md-2">@include('include.cats')</aside>
+    <aside id="sidebar" class="col-12 col-md-2">@include('include.cats')</aside>
 
     <div class="col-12 col-md-9">
         <header>
             @include('include.navbar')
-
         </header>
 
         @yield('bread')
 
-
-
-
-        <main>
+        <main class="my-3">
             @yield('main')
         </main>
 
@@ -38,6 +38,12 @@
         </footer>
     </div>
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+@yield('script')
 
 
 </body>
