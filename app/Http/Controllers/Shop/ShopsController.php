@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Shop;
+use App\SubCategory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -47,13 +48,12 @@ class ShopsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Category $category
      * @param Shop $shop
      * @return Application|Factory|View
      */
-    public function show(Category $category, Shop $shop)
+    public function show(Shop $shop)
     {
-        return view('shop.show', compact('category', 'shop'));
+        return view('shop.show', compact('shop'));
     }
 
     /**

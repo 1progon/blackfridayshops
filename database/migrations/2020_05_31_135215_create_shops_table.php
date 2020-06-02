@@ -19,22 +19,21 @@ class CreateShopsTable extends Migration
                 $table->bigIncrements('id');
                 $table->timestamps();
 
-                $table->unsignedBigInteger('category_id');
-
                 $table->string('name');
                 $table->string('slug');
 
-                $table->string('logo');
-                $table->text('description');
-                $table->string('website');
+                $table->unsignedBigInteger('adm_id');
+                $table->string('adm_image');
+                $table->string('adm_status');
+                $table->string('adm_connection_status');
+                $table->dateTime('adm_modified_date');
+                $table->string('adm_gotolink');
+
+                $table->text('description')->nullable();
+                $table->string('website')->nullable();
 
 
                 $table->boolean('popular')->default(0);
-
-                $table->foreign('category_id')
-                    ->references('id')
-                    ->on('categories')
-                    ->onDelete('cascade');
             }
         );
     }

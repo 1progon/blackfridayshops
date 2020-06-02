@@ -16,13 +16,15 @@
 
     <title>Главная страница магазинов</title>
 </head>
-<body style="overflow-y: scroll">
+<body style="overflow-y: hidden">
 
 
-<div class="row container-fluid">
-    <aside id="sidebar" class="col-12 col-md-2">@include('include.cats')</aside>
+<div class="d-flex">
+    <aside id="sidebar" class="col-12 col-md-2">
+        @include('include.cats')
+    </aside>
 
-    <div class="col-12 col-md-9">
+    <div class="col-12 col-md" style="max-height: 100vh; overflow-y: scroll">
         <header>
             @include('include.navbar')
         </header>

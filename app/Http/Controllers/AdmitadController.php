@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Shop;
+use App\SubCategory;
 use Cache;
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use Str;
 
 class AdmitadController extends Controller
 {
@@ -32,7 +37,7 @@ class AdmitadController extends Controller
 
     public function index()
     {
-        return view('admitad.admitad-api');
+        return view('user.admitad.admitad-api');
     }
 
     public function getToken(): object
@@ -65,12 +70,12 @@ class AdmitadController extends Controller
     }
 
 
-    public function getAdvCampaignsForWebsite($limit = 20, $offset = 0, $connectionStatus = 'active'): object
+    public function getAdvCampaignsForWebsite($limit = 20, $offset = 0, $connectionStatus = ''): object
     {
         $apiUri = 'advcampaigns/website/' . $this->websiteId . '/';
         $apiUri .= '?limit=' . $limit;
         $apiUri .= '&offset=' . $offset;
-        $apiUri .= '&connection_status =' . $connectionStatus;
+        $apiUri .= '&connection_status =' . $connectionStatus; //active, pending, declined
 
         $campaigns = $this->client->get(
             $this->baseUri . $apiUri,
@@ -85,9 +90,11 @@ class AdmitadController extends Controller
         return json_decode($campaigns);
     }
 
-    public function getCategories()
+    public function getCategories($asArray = false, $limit = 20, $offset = 0): object
     {
         $apiUri = 'categories/';
+        $apiUri .= '?limit=' . $limit;
+        $apiUri .= '&offset=' . $offset;
 
         $categories = $this->client->get(
             $this->baseUri . $apiUri,
@@ -100,6 +107,87 @@ class AdmitadController extends Controller
         )->getBody()->getContents();
 
 
-        return ($categories);
+        return json_decode($categories, $asArray);
+    }
+
+
+    public function saveCategoriesToDb()
+    {
+        $cats = $this->getCategories(false, 500);
+
+        var_dump($cats);
+
+        foreach ($cats->results as $category) {
+            if ($category->parent !== null) {
+                if (SubCategory::firstWhere('admitad_id', '=', $category->id)) {
+                    continue;
+                }
+
+
+                $cat = new SubCategory();
+                $cat->category_id = Category::firstWhere('admitad_id', '=', $category->parent->id)->id;
+            } else {
+                if (Category::firstWhere('admitad_id', '=', $category->id)) {
+                    continue;
+                }
+
+                $cat = new Category();
+            }
+
+            $cat->name = $category->name;
+            $cat->admitad_id = $category->id;
+            $cat->slug = Str::slug($category->name, '-');
+
+
+            $cat->save();
+        }
+    }
+
+
+    public function saveCampaigns($limit = 20, $offset = 0)
+    {
+        $admitadShops = $this->getAdvCampaignsForWebsite($limit, $offset, '');
+
+        if (empty($admitadShops->results)) {
+            return 'Results empty';
+        }
+
+        foreach ($admitadShops->results as $shop) {
+            if (Shop::firstWhere('adm_id', $shop->id)) {
+                //TODO if modified_date ....
+                echo 'in db: ' . Shop::firstWhere('adm_id', $shop->id)->id . "<br />";
+                continue;
+            }
+
+            $newShop = new Shop();
+
+
+            $newShop->adm_id = $shop->id;
+            $newShop->name = $shop->name;
+            $newShop->slug = Str::slug($shop->name, '-');
+            $newShop->adm_image = $shop->image;
+            $newShop->adm_status = $shop->status;
+            $newShop->adm_gotolink = $shop->gotolink;
+            $newShop->adm_modified_date = $shop->modified_date;
+            $newShop->adm_connection_status = $shop->connection_status;
+            $newShop->popular = 0;
+
+
+            $newShop->save();
+
+
+            foreach ($shop->categories as $admCategory) {
+                if ($admCategory->parent !== null) {
+                    $myCatId = SubCategory::firstWhere('admitad_id', '=', $admCategory->id)->id;
+                    $newShop->subCategories()->attach($myCatId);
+                } else {
+                    $myCatId = Category::firstWhere('admitad_id', '=', $admCategory->id)->id;
+                    $newShop->categories()->attach($myCatId);
+                }
+            }
+
+            echo 'added to db: ' . $newShop->id . '<br />';
+        }
+        return 'All imported';
     }
 }

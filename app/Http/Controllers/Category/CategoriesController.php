@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Shop;
+use App\SubCategory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
@@ -54,14 +55,21 @@ class CategoriesController extends Controller
      * Display the specified resource.
      *
      * @param Category $category
+     * @param SubCategory $subCategory
      * @return Application|Factory|View
      */
-    public function show(Category $category)
+    public function show(Category $category, SubCategory $subCategory = null)
     {
-        $shops = $category->shops()->paginate();
+        if ($subCategory) {
+            $shops = $category->subCategories()
+                ->firstWhere('slug', '=', $subCategory->slug)
+                ->shops()->paginate();
+        } else {
+            $shops = $category->shops()->paginate();
+        }
 
 
-        return view('category.show', compact('shops', 'category'));
+        return view('category.show', compact('shops', 'category', 'subCategory'));
     }
 
     /**

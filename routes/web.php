@@ -19,14 +19,28 @@ Route::get('/', 'MainController@index');
 Route::get('/categories', 'CategoriesController@index');
 Route::get('/shops', 'ShopsController@index');
 
-Route::get('/admitad', 'AdmitadController@index')->name('admitad');
-Route::get('/admitad/cats', 'AdmitadController@getCategories')->name('admitad.cats');
 
-Route::get('/category/{category}', 'CategoriesController@show')
+Route::get('/admitad', 'AdmitadController@index')
+    ->name('admitad')
+    ->middleware('auth');
+Route::get('/admitad/cats', 'AdmitadController@getCategories')
+    ->name('admitad.cats')
+    ->middleware('auth');
+
+Route::get('/admitad/saveCats', 'AdmitadController@saveCategoriesToDb')
+    ->name('admitad.cats.save')
+    ->middleware('auth');
+
+Route::get('/admitad/saveCamps/{limit}/{offset}', 'AdmitadController@saveCampaigns')
+    ->name('admitad.camps.save')
+    ->middleware('auth');
+
+
+Route::get('/category/{category}/{sub_category?}', 'CategoriesController@show')
     ->name('category');
 
 
-Route::get('/{category}/{shop}', 'ShopsController@show')
+Route::get('/{shop}', 'ShopsController@show')
     ->name('shop');
 
 
