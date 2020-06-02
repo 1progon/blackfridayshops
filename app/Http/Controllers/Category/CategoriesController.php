@@ -63,9 +63,9 @@ class CategoriesController extends Controller
         if ($subCategory) {
             $shops = $category->subCategories()
                 ->firstWhere('slug', '=', $subCategory->slug)
-                ->shops()->paginate();
+                ->shops()->active()->paginate();
         } else {
-            $shops = $category->shops()->paginate();
+            $shops = $category->shops()->active()->paginate();
         }
 
 

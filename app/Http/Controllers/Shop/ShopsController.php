@@ -7,6 +7,7 @@ use App\Shop;
 use App\SubCategory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -19,7 +20,7 @@ class ShopsController extends Controller
      */
     public function index()
     {
-        $shops = Shop::paginate();
+        $shops = Shop::active()->paginate();
 
         return view('shop.index', compact('shops'));
     }
@@ -49,10 +50,15 @@ class ShopsController extends Controller
      * Display the specified resource.
      *
      * @param Shop $shop
-     * @return Application|Factory|View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function show(Shop $shop)
     {
+        if($shop->adm_status !== 'active' || $shop->adm_connection_status !== 'active') {
+                return redirect()->route('unauthorized');
+
+        }
+
         return view('shop.show', compact('shop'));
     }
 

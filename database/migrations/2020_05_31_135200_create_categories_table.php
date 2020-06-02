@@ -23,6 +23,7 @@ class CreateCategoriesTable extends Migration
             $table->text('description')->nullable();
             $table->string('logo')->nullable();
             $table->string('slug');
+            $table->unsignedInteger('position')->nullable();
         });
     }
 

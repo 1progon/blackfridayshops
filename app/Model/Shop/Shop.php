@@ -25,6 +25,16 @@ class Shop extends Model
         return 'slug';
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where(
+            [
+                ['adm_status', '=', 'active'],
+                ['adm_connection_status' , '=', 'active']
+            ]
+        );
+    }
+
 
     public function categories()
     {

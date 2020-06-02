@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('main')
-    @forelse($cats as $cat)
+    @forelse($cats->sortBy('position') as $cat)
         @include('category.card', $cat)
 
     @empty
