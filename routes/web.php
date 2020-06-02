@@ -14,9 +14,13 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/unauthorized', 'unauthorized')->name('unauthorized');
+
 
 Route::get('/', 'MainController@index');
+
+Route::view('/unauthorized', 'unauthorized')->name('unauthorized');
+
+Auth::routes();
 
 Route::get('/categories', 'CategoriesController@index');
 Route::get('/shops', 'ShopsController@index');
@@ -46,7 +50,7 @@ Route::get('/{shop}', 'ShopsController@show')
     ->name('shop');
 
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
