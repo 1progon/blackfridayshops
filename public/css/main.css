@@ -1,5 +1,48 @@
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+}
+
+.pagination {
+    flex-wrap: wrap;
+}
+
+
 #sidebar {
-    width: 300px;
-    min-height: 100vh;
+    position: sticky;
+    top: 60px;
+    z-index: 99;
+    min-width: 250px;
     background-color: #343a40;
+    max-height: 30vh;
+    overflow-y: scroll;
+}
+
+#wrapper {
+    position: sticky;
+    top: 60px;
+    z-index: 1;
+}
+
+
+footer a {
+    color: lightgray;
+
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+
+@media (min-width: 576px) {
+    header {
+        height: 60px;
+    }
+
+    #sidebar {
+        max-height: calc(100vh - 60px);
+        overflow-y: scroll;
+    }
 }

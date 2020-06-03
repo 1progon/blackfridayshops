@@ -1,4 +1,4 @@
-<div class="card m-2 col-12 col-md-2">
+<div class="card m-2 col-12 col-md-2" style="min-width: 200px; max-width: 90%">
     <img src="{{$shop->adm_image}}" class="" alt="{{$shop->name}}" width="143" height="59">
     <div class="card-body">
         <h5 class="card-title">{{$shop->name}}</h5>

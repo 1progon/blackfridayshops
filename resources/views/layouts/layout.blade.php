@@ -16,30 +16,33 @@
 
     <title>Главная страница магазинов</title>
 </head>
-<body style="overflow-y: hidden">
+<body>
 
 
-<div class="d-flex">
-    <aside id="sidebar" class="col-12 col-md-2">
+<header class="bg-dark">
+    @include('include.navbar')
+</header>
+
+<div id="wrapper" class="d-flex flex-wrap">
+
+    <aside id="sidebar" class="col-12 col-sm-2 p-0">
         @include('include.cats')
     </aside>
 
-    <div class="col-12 col-md" style="max-height: 100vh; overflow-y: scroll">
-        <header>
-            @include('include.navbar')
-        </header>
 
+    <main class="my-3 col-sm">
         @yield('bread')
-
-        <main class="my-3">
-            @yield('main')
-        </main>
+        @yield('main')
 
         <footer>
             @include('include.footer')
         </footer>
-    </div>
+    </main>
+
+
 </div>
+
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

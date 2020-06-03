@@ -146,7 +146,13 @@ class AdmitadController extends Controller
 
     public function saveCampaigns($limit = 20, $offset = 0)
     {
-        $admitadShops = $this->getAdvCampaignsForWebsite($limit, $offset, '');
+        $admitadShops = Cache::remember(
+            'advCamps-' . $limit . '-' . $offset,
+            86400,
+            function () use ($limit, $offset) {
+                return $this->getAdvCampaignsForWebsite($limit, $offset);
+            }
+        );
 
         if (empty($admitadShops->results)) {
             return 'Results empty';
@@ -163,8 +169,28 @@ class AdmitadController extends Controller
 
 
             $newShop->adm_id = $shop->id;
+
+            $pattern = [
+                '/\[.*\]/i',
+                '/\+.*/i',
+                '/Many GEO.*/i',
+                '/WW/'
+            ];
+
             $newShop->name = $shop->name;
-            $newShop->slug = Str::slug($shop->name, '-');
+
+            $newShop->name = preg_replace($pattern, '', $newShop->name);
+            $newShop->name = trim($newShop->name);
+            $newShop->name = preg_replace('/\s+/', ' ', $newShop->name);
+
+            $newShop->slug = Str::slug($newShop->name, '-');
+            $exist = Shop::where('slug', '=', $newShop->slug)->count();
+            if ($exist > 0) {
+                $newShop->slug = $newShop->slug . '-' . ($exist + 1);
+                $newShop->name = $newShop->name . '-' . ($exist + 1);
+            }
+
+
             $newShop->adm_image = $shop->image;
             $newShop->adm_status = $shop->status;
             $newShop->adm_gotolink = $shop->gotolink;
@@ -178,11 +204,17 @@ class AdmitadController extends Controller
 
             foreach ($shop->categories as $admCategory) {
                 if ($admCategory->parent !== null) {
-                    $myCatId = SubCategory::firstWhere('admitad_id', '=', $admCategory->id)->id;
-                    $newShop->subCategories()->attach($myCatId);
+                    $myCat = SubCategory::firstWhere('admitad_id', '=', $admCategory->id);
+                    if (!$myCat) {
+                        continue;
+                    }
+                    $newShop->subCategories()->attach($myCat->id);
                 } else {
-                    $myCatId = Category::firstWhere('admitad_id', '=', $admCategory->id)->id;
-                    $newShop->categories()->attach($myCatId);
+                    $myCat = Category::firstWhere('admitad_id', '=', $admCategory->id);
+                    if (!$myCat) {
+                        continue;
+                    }
+                    $newShop->categories()->attach($myCat->id);
                 }
             }
 

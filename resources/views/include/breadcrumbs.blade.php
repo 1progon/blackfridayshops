@@ -1,4 +1,4 @@
-<nav aria-label="breadcrumb">
+<nav aria-label="breadcrumb" class="mx-1 my-1">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Главная</a></li>
 

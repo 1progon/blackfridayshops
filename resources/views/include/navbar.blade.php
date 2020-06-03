@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
+<nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between flex-wrap">
     <ul class="navbar-nav">
         <li class="nav-item">
             <a href="/" class="nav-link">Главная</a>
@@ -16,11 +16,11 @@
 
     <div>
         @guest
-            <a class="btn btn-light" href="/login">Login</a>
-            <a class="btn btn-light" href="/register">Register</a>
+            <a class="btn btn-light" href="/login">Логин</a>
+            <a class="btn btn-light" href="/register">Регистрация</a>
         @else
-            <a class="btn btn-light" href="/home">Dashboard</a>
-            <input class="btn btn-light" type="submit" name="" id="" value="Logout" form="logout">
+            <a class="btn btn-light" href="/home">Аккаунт</a>
+            <input class="btn btn-light" type="submit" name="" id="" value="Выйти" form="logout">
 
             <form id="logout" action="/logout" method="post">
                 @csrf
