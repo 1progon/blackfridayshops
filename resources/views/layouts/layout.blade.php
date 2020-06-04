@@ -50,6 +50,6 @@
 
 @yield('script')
 
-
+@include('include.counters')
 </body>
 </html>

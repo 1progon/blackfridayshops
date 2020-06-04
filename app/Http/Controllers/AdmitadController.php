@@ -197,7 +197,7 @@ class AdmitadController extends Controller
 
 
             $shop->website = $admShop->site_url;
-            $shop->adm_image = $admShop->image;
+            $shop->adm_image = str_replace('http://', 'https://', $admShop->image);
             $shop->adm_status = $admShop->status;
             $shop->adm_gotolink = $admShop->gotolink;
             $shop->adm_modified_date = $admShop->modified_date;
