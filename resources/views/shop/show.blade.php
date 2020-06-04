@@ -7,25 +7,36 @@
 @section('script')
     <script>
         let link = document.getElementById('linkToShop');
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-            window.open('{{$shop->adm_gotolink}}', '_blank');
-        });
+
+        function changeLink() {
+            link.href = "{{$shop->adm_gotolink}}";
+            setTimeout(() => {
+                link.href = 'javascript:void(0)';
+            }, 0);
+        }
+
+        link.addEventListener('click', changeLink);
     </script>
 @endsection
 
 @section('main')
     <div class="p-2">
         <div>
-            <img src="{{$shop->adm_image}}" alt="" width="143" height="59">
             <h1 class="h1">{{$shop->name}}</h1>
+            <img src="{{$shop->adm_image}}" alt="" width="143" height="59">
             <p>{{$shop->description}}</p>
+
+
+            <div>
+                <img src="https://image.flaticon.com/icons/svg/1150/1150575.svg" width="59" height="59" alt="">
+                {{$shop->website}}
+            </div>
 
             <a id="linkToShop"
                rel="nofollow noopener"
                target="_blank"
-               href="{{$shop->slug}}"
-               class="btn btn-primary">Открыть {{$shop->name}}
+               href="javascript:void(0)"
+               class="btn btn-primary">Открыть сайт {{$shop->name}}
             </a>
         </div>
 
@@ -57,6 +68,11 @@
                 <div class="form-group">
                     <label for="text">Текст отзыва</label>
                     <textarea class="form-control" name="text" id="" rows="3"></textarea>
+                </div>
+
+
+                <div class="form-group">
+                    <input type="button" class="form-control btn btn-primary" placeholder="" value="Отправить">
                 </div>
             </form>
 

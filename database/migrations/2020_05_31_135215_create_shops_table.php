@@ -20,6 +20,7 @@ class CreateShopsTable extends Migration
                 $table->timestamps();
 
                 $table->string('name');
+                $table->boolean('popular')->default(0);
                 $table->string('slug');
 
                 $table->unsignedBigInteger('adm_id');
@@ -33,7 +34,7 @@ class CreateShopsTable extends Migration
                 $table->string('website')->nullable();
 
 
-                $table->boolean('popular')->default(0);
+
             }
         );
     }

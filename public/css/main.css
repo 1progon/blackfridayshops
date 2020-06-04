@@ -9,6 +9,20 @@ header {
     flex-wrap: wrap;
 }
 
+.my-card {
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    background-color: #f8f8f8;
+}
+
+a.my-card {
+    text-decoration: none;
+}
+
+.my-card:hover {
+    background-color: #d6d8db;
+}
+
 
 #sidebar {
     position: sticky;
@@ -46,3 +60,4 @@ footer a:hover {
         overflow-y: scroll;
     }
 }
+

@@ -16,7 +16,7 @@
 
     <title>Главная страница магазинов</title>
 </head>
-<body>
+<body style="overflow-y: scroll">
 
 
 <header class="bg-dark">

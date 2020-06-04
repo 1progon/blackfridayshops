@@ -8,7 +8,7 @@ class MainController extends Controller
 {
     public function index()
     {
-        $topShops = Shop::where('popular', 1)->paginate();
+        $topShops = Shop::active()->where('popular', 1)->paginate(30);
 
 
         return view('home', compact('topShops'));

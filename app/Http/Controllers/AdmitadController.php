@@ -158,17 +158,22 @@ class AdmitadController extends Controller
             return 'Results empty';
         }
 
-        foreach ($admitadShops->results as $shop) {
-            if (Shop::firstWhere('adm_id', $shop->id)) {
-                //TODO if modified_date ....
-                echo 'in db: ' . Shop::firstWhere('adm_id', $shop->id)->id . "<br />";
-                continue;
+        foreach ($admitadShops->results as $admShop) {
+            $shop = Shop::firstWhere('adm_id', $admShop->id);
+
+
+            if ($shop) {
+                if (strtotime($shop->adm_modified_date) == strtotime($admShop->modified_date)) {
+                    echo 'in db: ' . $shop->id . "<br />";
+                    continue;
+                } else {
+                    echo 'updated in db: ' . $shop->id . "<br />";
+                }
+            } else {
+                $shop = new Shop();
+                $shop->adm_id = $admShop->id;
             }
 
-            $newShop = new Shop();
-
-
-            $newShop->adm_id = $shop->id;
 
             $pattern = [
                 '/\[.*\]/i',
@@ -177,48 +182,49 @@ class AdmitadController extends Controller
                 '/WW/'
             ];
 
-            $newShop->name = $shop->name;
+            $shop->name = $admShop->name;
 
-            $newShop->name = preg_replace($pattern, '', $newShop->name);
-            $newShop->name = trim($newShop->name);
-            $newShop->name = preg_replace('/\s+/', ' ', $newShop->name);
+            $shop->name = preg_replace($pattern, '', $shop->name);
+            $shop->name = trim($shop->name);
+            $shop->name = preg_replace('/\s+/', ' ', $shop->name);
 
-            $newShop->slug = Str::slug($newShop->name, '-');
-            $exist = Shop::where('slug', '=', $newShop->slug)->count();
+            $shop->slug = Str::slug($shop->name, '-');
+            $exist = Shop::where('slug', '=', $shop->slug)->count();
             if ($exist > 0) {
-                $newShop->slug = $newShop->slug . '-' . ($exist + 1);
-                $newShop->name = $newShop->name . '-' . ($exist + 1);
+                $shop->slug = $shop->slug . '-' . ($exist + 1);
+                $shop->name = $shop->name . '-' . ($exist + 1);
             }
 
 
-            $newShop->adm_image = $shop->image;
-            $newShop->adm_status = $shop->status;
-            $newShop->adm_gotolink = $shop->gotolink;
-            $newShop->adm_modified_date = $shop->modified_date;
-            $newShop->adm_connection_status = $shop->connection_status;
-            $newShop->popular = 0;
+            $shop->website = $admShop->site_url;
+            $shop->adm_image = $admShop->image;
+            $shop->adm_status = $admShop->status;
+            $shop->adm_gotolink = $admShop->gotolink;
+            $shop->adm_modified_date = $admShop->modified_date;
+            $shop->adm_connection_status = $admShop->connection_status;
+            $shop->popular = 0;
 
 
-            $newShop->save();
+            $shop->save();
 
 
-            foreach ($shop->categories as $admCategory) {
+            foreach ($admShop->categories as $admCategory) {
                 if ($admCategory->parent !== null) {
                     $myCat = SubCategory::firstWhere('admitad_id', '=', $admCategory->id);
                     if (!$myCat) {
                         continue;
                     }
-                    $newShop->subCategories()->attach($myCat->id);
+                    $shop->subCategories()->attach($myCat->id);
                 } else {
                     $myCat = Category::firstWhere('admitad_id', '=', $admCategory->id);
                     if (!$myCat) {
                         continue;
                     }
-                    $newShop->categories()->attach($myCat->id);
+                    $shop->categories()->attach($myCat->id);
                 }
             }
 
-            echo 'added to db: ' . $newShop->id . '<br />';
+            echo 'added to db: ' . $shop->id . '<br />';
         }
         return 'All imported';
     }
