@@ -180,7 +180,9 @@ class AdmitadController extends Controller
                 '/\+.*/i',
                 '/Many GEO.*/i',
                 '/ WW/',
-                '/ RU/'
+                '/ RU/',
+                '/CPL/',
+                '/\(\)/',
             ];
 
             $shop->name = $admShop->name;
