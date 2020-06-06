@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Популярные магазины')
+
 @section('main')
 
     <div class="d-flex flex-wrap">

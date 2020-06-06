@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Все магазины список')
+
 @section('main')
 
     @forelse($shops as $shop)

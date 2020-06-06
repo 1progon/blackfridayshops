@@ -13,12 +13,12 @@
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
+    <title>@yield('title') | BlackFridayShops</title>
 
 
     @yield('head')
 
 
-    <title>Главная страница магазинов</title>
 </head>
 <body style="overflow-y: scroll">
 

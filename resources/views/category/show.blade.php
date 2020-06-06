@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', $category->name .  (isset($subCategory->name) ? ', ' . $subCategory->name : '') )
+
 @section('bread')
     @include('include.breadcrumbs', ['cat' => $category, 'subCat' => $subCategory])
 @endsection

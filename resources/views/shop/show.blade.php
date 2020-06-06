@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Магазин - ' . $shop->name)
+
 @section('bread')
     @include('include.breadcrumbs', ['shop' => $shop])
 @endsection
