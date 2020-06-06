@@ -27,7 +27,20 @@
             <p>{{$shop->description}}</p>
 
 
-            <div>
+            <div class="my-3">
+                <img src="https://image.flaticon.com/icons/svg/2977/2977681.svg" alt="иконка рейтинга магазина"
+                     width="59" height="59">
+                {{ $shop->rating > 0 ? $shop->rating : 'Не определён'}}
+            </div>
+
+            <div class="my-3">
+                <img src="https://image.flaticon.com/icons/svg/126/126509.svg" alt="телефонный аппарат иконка"
+                     width="59" height="59">
+                {{ $shop->phone ? $shop->phone : 'Не указан'}}
+            </div>
+
+
+            <div class="my-3">
                 <img src="https://image.flaticon.com/icons/svg/1150/1150575.svg" width="59" height="59" alt="">
                 {{$shop->website}}
             </div>
@@ -36,8 +49,27 @@
                rel="nofollow noopener"
                target="_blank"
                href="javascript:void(0)"
-               class="btn btn-primary">Открыть сайт {{$shop->name}}
+               class="btn btn-primary my-3">
+                Открыть сайт {{$shop->name}}
             </a>
+
+            <div class="d-flex flex-wrap bg-light my-4 py-2">
+                <div class="col-12 col-sm-2 font-weight-bold">Представлен в категориях:</div>
+
+                <div class="col-12 col-sm d-flex flex-column">
+                    @forelse( $cats as $cat )
+                        <a href="{{ route('category', $cat )}}">{{ $cat->name}}</a>
+                    @empty
+                    @endforelse
+
+
+                    @forelse( $subCats as $subCat)
+                        <a href="{{ route('category', [$cat, $subCat]) }}">{{ $subCat->name }}</a>
+                    @empty
+                    @endforelse
+                </div>
+
+            </div>
         </div>
 
 

@@ -25,21 +25,43 @@ a.my-card {
     background-color: #d6d8db;
 }
 
+#show-sidebar {
+    display: block;
+}
 
 #sidebar {
-    position: sticky;
-    top: 60px;
+    display: none;
     z-index: 99;
     min-width: 250px;
     background-color: #343a40;
-    max-height: 30vh;
-    overflow-y: scroll;
 }
 
 #wrapper {
     position: sticky;
     top: 60px;
     z-index: 1;
+}
+
+#linkToShop {
+    position: relative;
+    padding-left: 20px;
+}
+
+#linkToShop:hover {
+    background-color: red;
+    border-color: #b60000;
+}
+
+
+#linkToShop::before {
+    position: absolute;
+    left: 3px;
+    top: 9px;
+    width: 16px;
+    height: 16px;
+    background-image: url("/imgs/out.svg");
+    background-size: 16px 16px;
+    content: ' ';
 }
 
 
@@ -56,7 +78,14 @@ footer a:hover {
     header {
     }
 
+    #show-sidebar-btn {
+        display: none;
+    }
+
     #sidebar {
+        display: unset;
+        position: sticky;
+        top: 60px;
         max-height: calc(100vh - 60px);
         overflow-y: scroll;
     }

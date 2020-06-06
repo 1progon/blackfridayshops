@@ -59,7 +59,11 @@ class ShopsController extends Controller
 
         }
 
-        return view('shop.show', compact('shop'));
+        $cats = $shop->categories;
+        $subCats = $shop->subCategories;
+
+
+        return view('shop.show', compact('shop', 'cats', 'subCats'));
     }
 
     /**

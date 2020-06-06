@@ -22,6 +22,8 @@ class CreateShopsTable extends Migration
                 $table->string('name');
                 $table->boolean('popular')->default(0);
                 $table->string('slug');
+                $table->decimal('rating')->nullable();
+                $table->string('phone')->nullable();
 
                 $table->unsignedBigInteger('adm_id');
                 $table->string('adm_image');
