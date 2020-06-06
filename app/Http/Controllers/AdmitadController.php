@@ -179,7 +179,8 @@ class AdmitadController extends Controller
                 '/\[.*\]/i',
                 '/\+.*/i',
                 '/Many GEO.*/i',
-                '/WW/'
+                '/ WW/',
+                '/ RU/'
             ];
 
             $shop->name = $admShop->name;
@@ -202,6 +203,8 @@ class AdmitadController extends Controller
             $shop->adm_gotolink = $admShop->gotolink;
             $shop->adm_modified_date = $admShop->modified_date;
             $shop->adm_connection_status = $admShop->connection_status;
+
+            //TODO Вынести отдельно популярные магазины и разбить контроллер
 
             $popularShops = [
                 'Adminvps',
@@ -410,21 +413,33 @@ class AdmitadController extends Controller
             $shop->save();
 
 
+            $catsId = [];
+            $subCatsId = [];
+
             foreach ($admShop->categories as $admCategory) {
                 if ($admCategory->parent !== null) {
                     $myCat = SubCategory::firstWhere('admitad_id', '=', $admCategory->id);
                     if (!$myCat) {
                         continue;
                     }
-                    $shop->subCategories()->attach($myCat->id);
+
+                    $catsId[] = $myCat->id;
+
                 } else {
                     $myCat = Category::firstWhere('admitad_id', '=', $admCategory->id);
                     if (!$myCat) {
                         continue;
                     }
-                    $shop->categories()->attach($myCat->id);
+
+                    $subCatsId[] = $myCat->id;
+
                 }
             }
+
+
+            $shop->subCategories()->sync($catsId);
+            $shop->categories()->sync($subCatsId);
+
 
             echo 'added to db: ' . $shop->id . '<br />';
         }
