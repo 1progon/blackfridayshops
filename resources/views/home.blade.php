@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Популярные магазины')
+@section('title', 'Каталог популярных интернет магазинов России')
 
 @section('main')
 
