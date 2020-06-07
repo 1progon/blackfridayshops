@@ -29,7 +29,7 @@
 
 <div id="wrapper" class="d-flex flex-wrap">
 
-    <button v-on:click="showCats = !showCats"
+    <button v-on:click="(showCats = !showCats), scrollToActiveCategory()"
             id="show-sidebar-btn"
             type="button"
             class="btn btn-primary m-2 btn-block">
@@ -56,7 +56,7 @@
 </div>
 
 
-<script src="{{ asset('js/vue-ctrl.js') }}"></script>
+<script src="{{ asset('js/vue-wrapper-div.js') }}"></script>
 
 
 @yield('script')

@@ -18,6 +18,9 @@
                     {{ $subCat->name}}
                 </a>
             @empty
+                <span class="list-group-item list-group-item-secondary list-group-item-action py-0">
+                    Нет вложенных
+                </span>
             @endforelse
         </div>
 
@@ -27,16 +30,3 @@
 
 </div>
 
-
-<script>
-    document.addEventListener('DOMContentLoaded', scrollToActiveCategory);
-
-    function scrollToActiveCategory() {
-        let activeElement = document.querySelector('#categories .active');
-        console.log(activeElement);
-
-        if (activeElement) {
-            activeElement.scrollIntoView({behavior: "smooth"});
-        }
-    }
-</script>
