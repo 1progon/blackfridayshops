@@ -25,14 +25,17 @@ a.my-card {
     background-color: #d6d8db;
 }
 
-#show-sidebar {
+#show-sidebar-btn {
     display: block;
+    position: sticky;
+    top: 70px;
+    z-index: 3;
 }
 
 #sidebar {
     position: relative;
     display: none;
-    z-index: 99;
+    z-index: 2;
     min-width: 250px;
     background-color: #343a40;
 }
@@ -54,11 +57,11 @@ a.my-card {
     content: '';
 }
 
-#wrapper {
-    position: sticky;
-    top: 60px;
-    z-index: 1;
+main {
+    background-color: white;
+    z-index: 4;
 }
+
 
 #linkToShop {
     position: relative;
