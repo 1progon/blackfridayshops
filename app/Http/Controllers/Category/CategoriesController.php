@@ -56,7 +56,7 @@ class CategoriesController extends Controller
      *
      * @param Category $category
      * @param SubCategory $subCategory
-     * @return Application|Factory|View
+     * @return Application|Factory|\Illuminate\Http\RedirectResponse|View
      */
     public function show(Category $category, SubCategory $subCategory = null)
     {
@@ -66,6 +66,10 @@ class CategoriesController extends Controller
                 ->shops()->active()->paginate();
         } else {
             $shops = $category->shops()->active()->paginate();
+        }
+
+        if (request()->query('page') > $shops->lastPage()) {
+            abort('404');
         }
 
 
