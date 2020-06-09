@@ -56,7 +56,7 @@
             </a>
 
             <div class="d-flex flex-wrap bg-light my-4 py-2">
-                <div class="col-12 col-sm-2 font-weight-bold">Представлен в категориях:</div>
+                <div class="col-12 col-sm-6 col-md-3 col-lg-2 font-weight-bold">Представлен в категориях:</div>
 
                 <div class="col-12 col-sm d-flex flex-column">
                     @forelse( $cats as $cat )

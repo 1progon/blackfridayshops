@@ -45,7 +45,7 @@
     </aside>
 
 
-    <main class="my-3 col-sm p-0 p-sm-1">
+    <main class="col col-sm p-0">
         @yield('bread')
         @yield('main')
 
