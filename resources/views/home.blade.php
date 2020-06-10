@@ -2,6 +2,14 @@
 
 @section('title', 'Каталог популярных интернет магазинов России')
 
+@php
+    $query = request()->query('page');
+    if($query == 1) {
+        $query = null;
+    }
+@endphp
+@section('canonical_relative', (isset($query) ? '?page=' . $query : '' ))
+
 @section('main')
 
     <div class="d-flex flex-wrap">

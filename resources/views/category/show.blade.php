@@ -2,7 +2,17 @@
 
 @section('title', $category->name .  (isset($subCategory->name) ? ' > ' . $subCategory->name : ''))
 
-@section('canonical_relative', 'category/' . $category->slug .  (isset($subCategory->slug) ? '/' . $subCategory->slug : ''))
+@php
+    $query = request()->query('page');
+    if($query == 1) {
+        $query = null;
+    }
+@endphp
+
+@section('canonical_relative', 'category/'
+            . $category->slug
+            .  (isset($subCategory->slug) ? '/' . $subCategory->slug : '')
+            . (isset($query) ? '?page=' . $query : ''))
 
 @section('bread')
     @include('include.breadcrumbs', ['cat' => $category, 'subCat' => $subCategory])
