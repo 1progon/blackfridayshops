@@ -2,6 +2,8 @@
 
 @section('title', 'Все магазины список')
 
+@section('canonical_relative', 'shops')
+
 @section('main')
 
     @forelse($shops as $shop)

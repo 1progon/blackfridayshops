@@ -2,6 +2,8 @@
 
 @section('title', $category->name .  (isset($subCategory->name) ? ' > ' . $subCategory->name : '') )
 
+@section('canonical_relative', 'category/' . $category->slug .  (isset($subCategory->slug) ? '/' . $subCategory->slug : ''));
+
 @section('bread')
     @include('include.breadcrumbs', ['cat' => $category, 'subCat' => $subCategory])
 @endsection

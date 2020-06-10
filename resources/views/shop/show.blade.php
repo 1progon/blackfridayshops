@@ -2,6 +2,8 @@
 
 @section('title', 'Магазин - ' . $shop->name)
 
+@section('canonical_relative', $shop->slug);
+
 @section('bread')
     @include('include.breadcrumbs', ['shop' => $shop])
 @endsection
