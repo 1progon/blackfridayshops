@@ -2,7 +2,7 @@
 
 @section('title', 'Магазин - ' . $shop->name)
 
-@section('canonical_relative', $shop->slug);
+@section('canonical_relative', $shop->slug)
 
 @section('bread')
     @include('include.breadcrumbs', ['shop' => $shop])
@@ -13,7 +13,7 @@
         let link = document.getElementById('linkToShop');
 
         function changeLink() {
-            link.href = "{{$shop->adm_gotolink}}";
+            link.href = "{{ $shop->adm_gotolink}}";
             setTimeout(() => {
                 link.href = 'javascript:void(0)';
             }, 0);
