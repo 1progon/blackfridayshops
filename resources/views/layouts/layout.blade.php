@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-{{--    <script src="https://cdn.jsdelivr.net/npm/vue"></script>--}}
+    {{--    <script src="https://cdn.jsdelivr.net/npm/vue"></script>--}}
 
 
     <meta charset="UTF-8">
@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
     <title>@yield('title') | BlackFridayShops</title>
+
+    <link rel="canonical" href="{{ secure_url('') }}/@yield('canonical_relative')" />
 
 
     @yield('head')
