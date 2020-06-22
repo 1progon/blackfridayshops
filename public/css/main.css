@@ -14,7 +14,7 @@ header {
 .my-card {
     border: 1px solid #ebebeb;
     border-radius: 3px;
-    background-color: #f8f8f8;
+    text-align: center;
 }
 
 a.my-card {
