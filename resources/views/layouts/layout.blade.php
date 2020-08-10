@@ -17,7 +17,10 @@
 
     <title>@yield('title') | BlackFridayShops</title>
 
-    <link rel="canonical" href="{{ secure_url('') }}/@yield('canonical_relative')" />
+    <link rel="canonical" href="{{ secure_url('') }}/@yield('canonical_relative')"/>
+
+    <meta name="google-site-verification" content="2uHOYJTZPbxvRo7fhHhtH0T3GouODLIooy2QZBKyx4g"/>
+    <meta name="yandex-verification" content="f7b3d5353692cbf7"/>
 
 
     @yield('head')
@@ -26,41 +29,45 @@
 </head>
 <body style="overflow-y: scroll">
 
+<div id="whole-page">
+    <header class="bg-dark">
+        @include('include.navbar')
+    </header>
 
-<header class="bg-dark">
-    @include('include.navbar')
-</header>
+    <div id="wrapper" class="d-flex flex-wrap">
 
-<div id="wrapper" class="d-flex flex-wrap">
+        <button v-on:click="(showCats = !showCats), scrollToActiveCategory()"
+                id="show-sidebar-btn"
+                type="button"
+                class="btn btn-primary m-2 btn-block">
+            Категории
+            <img v-if="showCats" src="{{ asset('imgs/down-chevron.svg') }}" alt="" width="16" height="16">
+            <img v-else src="{{ asset('imgs/up-chevron.svg') }}" alt="" width="16" height="16">
+        </button>
 
-    <button v-on:click="(showCats = !showCats), scrollToActiveCategory()"
-            id="show-sidebar-btn"
-            type="button"
-            class="btn btn-primary m-2 btn-block">
-        Категории
-        <img v-if="showCats" src="{{ asset('imgs/down-chevron.svg') }}" alt="" width="16" height="16">
-        <img v-else src="{{ asset('imgs/up-chevron.svg') }}" alt="" width="16" height="16">
-    </button>
-
-    <aside v-bind:style="showCats ? 'display: unset' : ''" id="sidebar" class="col-12 col-sm-2 p-0">
-        @include('include.cats')
-    </aside>
-
-
-    <main class="col-12 col-sm p-0 mt-3 mt-sm-0">
-        @yield('bread')
-        @yield('main')
-
-        <footer>
-            @include('include.footer')
-        </footer>
-    </main>
+        <aside v-bind:style="showCats ? 'display: unset' : ''" id="sidebar" class="col-12 col-sm-2 p-0">
+            @include('include.cats')
+        </aside>
 
 
+        <main class="col-12 col-sm p-0 mt-3 mt-sm-0">
+            <div v-if="showAddForm">
+                @include('include.add-site')
+            </div>
+            @yield('bread')
+            @yield('main')
+
+            <footer>
+                @include('include.footer')
+            </footer>
+        </main>
+
+
+    </div>
 </div>
 
 
-<script src="{{ asset('js/vue-wrapper-div.js') }}"></script>
+<script src="{{ asset('js/whole-page.js') }}"></script>
 
 
 @yield('script')

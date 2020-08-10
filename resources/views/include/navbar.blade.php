@@ -11,6 +11,10 @@
         <li class="nav-item">
             <a href="/shops" class="nav-link">Все магазины</a>
         </li>
+
+        <li class="nav-item">
+            <a @click.prevent="addShop" href="#" class="nav-link add-shop-button">Добавить свой</a>
+        </li>
     </ul>
 
 

@@ -13,10 +13,10 @@
     "guzzlehttp/guzzle": "^6.5",
     "laravel/framework": "^6.2",
     "laravel/tinker": "^2.0",
+    "barryvdh/laravel-ide-helper": "^2.7",
     "ext-json": "*"
   },
   "require-dev": {
-    "barryvdh/laravel-ide-helper": "^2.7",
     "facade/ignition": "^1.4",
     "fzaninotto/faker": "^1.9.1",
     "laravel/ui": "^1.0",
