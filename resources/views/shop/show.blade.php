@@ -9,7 +9,8 @@
 @endsection
 
 @section('meta_description', 'Магазин товаров - ' . $shop->name . ', ' . $shop->description)
-@section('meta_keywords', $shop->name . ', ' . $shop->slug . ', ' . $shop->description)
+@section('meta_keywords', $shop->name . ', ' . $shop->slug . ', магазин, интернет магазин, онлайн магазин, из 
+каталога магазинов, товары в магазине ' . $shop->name)
 
 @section('head')
     <script data-ad-client="ca-pub-8481515375748477"
