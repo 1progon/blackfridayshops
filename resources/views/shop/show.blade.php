@@ -8,8 +8,12 @@
     @include('include.breadcrumbs', ['shop' => $shop])
 @endsection
 
+@section('meta_description', $shop->description)
+@section('meta_keywords', $shop->name . ', ' . $shop->slug . ', ' . $shop->description)
+
 @section('head')
-    <script data-ad-client="ca-pub-8481515375748477" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script data-ad-client="ca-pub-8481515375748477"
+            async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 @endsection
 
 @section('script')
