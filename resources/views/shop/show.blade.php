@@ -8,7 +8,7 @@
     @include('include.breadcrumbs', ['shop' => $shop])
 @endsection
 
-@section('meta_description', $shop->description)
+@section('meta_description', 'Магазин товаров - ' . $shop->name . ', ' . $shop->description)
 @section('meta_keywords', $shop->name . ', ' . $shop->slug . ', ' . $shop->description)
 
 @section('head')
