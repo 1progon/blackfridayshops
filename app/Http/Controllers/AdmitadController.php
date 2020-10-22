@@ -7,18 +7,17 @@ use App\Shop;
 use App\SubCategory;
 use Cache;
 use GuzzleHttp\Client;
-use Illuminate\Http\Request;
 use Str;
 
 class AdmitadController extends Controller
 {
-    private $baseUri = 'https://api.admitad.com/';
+    private string $baseUri = 'https://api.admitad.com/';
 
-    private $client_id = 'aa96e03da354d06ed37e45f27eead3';
-    private $client_secret = '03a438bfad2212767063d2e45d9c6e';
+    private string $client_id = 'aa96e03da354d06ed37e45f27eead3';
+    private string $client_secret = '03a438bfad2212767063d2e45d9c6e';
 
     private $authKey;
-    private $websiteId = 1170267; //blackfridayshops
+    private int $websiteId = 1170267; //blackfridayshops
 
     private Client $client;
 
