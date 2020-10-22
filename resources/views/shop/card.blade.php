@@ -1,4 +1,4 @@
-<a href="{{ route('shop', [$shop->slug])}}"
+<a href="{{ route('front.shops.show', [$shop->slug])}}"
    class="col-6 col-sm-6 col-md-3 col-lg-2 my-card m-0 p-0 m-lg-1 p-lg-1"
    style="flex-grow: 1">
     <div>

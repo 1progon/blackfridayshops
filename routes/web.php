@@ -14,41 +14,51 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Auth::routes();
 
-Route::get('/', 'MainController@index');
+Route::get('/', 'MainController@index')->name('homepage');
 
 Route::view('/unauthorized', 'unauthorized')->name('unauthorized');
 
-Auth::routes();
 
-Route::get('/categories', 'CategoriesController@index');
-Route::get('/shops', 'ShopsController@index');
-
-
-Route::get('/admitad', 'AdmitadController@index')
-    ->name('admitad')
-    ->middleware('auth');
-Route::get('/admitad/cats', 'AdmitadController@getCategories')
-    ->name('admitad.cats')
-    ->middleware('auth');
-
-Route::get('/admitad/saveCats', 'AdmitadController@saveCategoriesToDb')
-    ->name('admitad.cats.save')
-    ->middleware('auth');
-
-Route::get('/admitad/saveCamps/{limit}/{offset}', 'AdmitadController@saveCampaigns')
-    ->name('admitad.camps.save')
-    ->middleware('auth');
-
+Route::get('/categories', 'CategoriesController@index')->name('front.categories.index');
+Route::get('/shops', 'ShopsController@index')->name('front.shops.index');
 
 Route::get('/category/{category}/{sub_category?}', 'CategoriesController@show')
     ->name('category');
 
-
 Route::get('/{shop}', 'ShopsController@show')
-    ->name('shop');
+    ->name('front.shops.show');
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('admin')
+    ->middleware(['auth', 'userOnlyActive'])
+    ->group(function () {
+
+        Route::get('dashboard', 'HomeController@index')->name('dashboard');
+        Route::resource('shops', 'Admin\AdminShopsController');
+
+        Route::post('deactivateShop/{shop}', 'Admin\AdminShopsController@deactivateAdmitadShopStatus')
+            ->name('shop.deactivate');
+
+        Route::get('admitad', 'AdmitadController@index')
+            ->name('admin.admitad');
+
+        Route::get('admitad/cats', 'AdmitadController@getCategories')
+            ->name('admin.admitad.cats');
+
+        Route::get('admitad/saveCats', 'AdmitadController@saveCategoriesToDb')
+            ->name('admin.admitad.cats.save');
+
+        Route::get('admitad/saveCamps/{limit}/{offset}', 'AdmitadController@saveCampaigns')
+            ->name('admin.admitad.camps.save');
+    });
+
+
+
+
+
+
+
 
 
