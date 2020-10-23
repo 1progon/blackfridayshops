@@ -49,7 +49,7 @@
             <div class="my-3">
                 <img src="https://image.flaticon.com/icons/svg/126/126509.svg" alt="телефонный аппарат иконка"
                      width="59" height="59">
-                {{ $shop->phone ? $shop->phone : 'Не указан'}}
+                {{ $shop->phone  ? $shop->phone : 'Не указан'}}
             </div>
 
 

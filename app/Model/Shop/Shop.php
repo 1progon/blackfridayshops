@@ -8,6 +8,7 @@ class Shop extends Model
 {
     protected $fillable = [
         "name",
+        "popular",
         "slug",
         "adm_id",
         "adm_image",
@@ -17,7 +18,8 @@ class Shop extends Model
         "adm_gotolink",
         "description",
         "website",
-        "popular",
+        "rating",
+        "phone"
     ];
 
     public function getRouteKeyName()
@@ -30,7 +32,7 @@ class Shop extends Model
         return $query->where(
             [
                 ['adm_status', '=', 'active'],
-                ['adm_connection_status' , '=', 'active']
+                ['adm_connection_status', '=', 'active']
             ]
         );
     }
