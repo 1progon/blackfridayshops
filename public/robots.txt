@@ -1,2 +1,11 @@
+User-agent: Yandex
+Disallow: /register*
+Disallow: /login*
+Disallow: /admin*
+Disallow: /public/
+
 User-agent: *
+Disallow: /login*
+Disallow: /admin*
+Disallow: /register*
 Disallow: /public/

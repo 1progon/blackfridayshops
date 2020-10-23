@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between flex-wrap">
-    <ul class="navbar-nav">
+<nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
+    <ul class="navbar-nav flex-wrap">
         <li class="nav-item">
             <a href="/" class="nav-link">Главная</a>
         </li>
