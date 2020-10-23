@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-{{--    <script src="https://cdn.jsdelivr.net/npm/vue"></script>--}}
+{{--            <script src="https://cdn.jsdelivr.net/npm/vue"></script>--}}
 
 
     <meta charset="UTF-8">
@@ -39,7 +39,9 @@
 
     <div id="wrapper" class="d-flex flex-wrap">
 
-        <button v-on:click="(showCats = !showCats), scrollToActiveCategory()"
+
+        {{--Mobile show category button--}}
+        <button @click="(showCats = !showCats);scrollToActiveCategory()"
                 id="show-sidebar-btn"
                 type="button"
                 class="btn btn-primary m-2 btn-block">

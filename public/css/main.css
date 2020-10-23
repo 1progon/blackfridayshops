@@ -29,8 +29,8 @@ a.my-card {
 #show-sidebar-btn {
     display: block;
     position: sticky;
-    top: 70px;
-    z-index: 3;
+    top: 102px;
+    z-index: 10;
 }
 
 #sidebar {
@@ -103,9 +103,6 @@ footer a:hover {
 }
 
 @media (min-width: 576px) {
-    header {
-    }
-
     #show-sidebar-btn {
         display: none;
     }
