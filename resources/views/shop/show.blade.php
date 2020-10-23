@@ -8,8 +8,8 @@
     @include('include.breadcrumbs', ['shop' => $shop])
 @endsection
 
-@section('meta_description', 'Магазин товаров - ' . $shop->name . ', ' . $shop->description)
-@section('meta_keywords', $shop->name . ', ' . $shop->slug . ', магазин, интернет магазин, онлайн магазин, из 
+@section('meta_description', 'Магазин товаров - ' . $shop->name . ', ' . Str::limit($shop->description, 80))
+@section('meta_keywords', $shop->name . ', ' . $shop->slug . ', магазин, интернет магазин, онлайн магазин, из
 каталога магазинов, товары в магазине ' . $shop->name)
 
 @section('head')

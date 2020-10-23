@@ -6,7 +6,7 @@
              height="59">
         <div class="py-2">
             <h5 style="word-break: break-all" class="card-title">{{ $shop->name}}</h5>
-            <p class="card-text">{{ $shop->description}}</p>
+            <p class="card-text">{{ Str::limit($shop->description, 80) }}</p>
         </div>
     </div>
 </a>
