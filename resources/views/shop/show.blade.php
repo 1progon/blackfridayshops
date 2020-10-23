@@ -9,7 +9,7 @@
 @endsection
 
 @section('meta_description', 'Магазин товаров - ' . $shop->name . ', ' . Str::limit($shop->description, 80))
-@section('meta_keywords', $shop->name . ', ' . $shop->slug . ', магазин, интернет магазин, онлайн магазин, из
+@section('meta_keywords', $shop->name . ', ' . $shop->slug . ', магазин, интернет-магазин, онлайн магазин, из
 каталога магазинов, товары в магазине ' . $shop->name)
 
 @section('head')
@@ -17,53 +17,44 @@
             async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 @endsection
 
-@section('script')
-    <script>
-        let link = document.getElementById('linkToShop');
-
-        function changeLink() {
-            link.href = "{{ $shop->adm_gotolink}}";
-            setTimeout(() => {
-                link.href = 'javascript:void(0)';
-            }, 0);
-        }
-
-        link.addEventListener('click', changeLink);
-    </script>
-@endsection
-
 @section('main')
     <div class="p-2">
         <div>
             <h1 class="h1">{{ $shop->name}}</h1>
-            <img src="{{ $shop->adm_image}}" alt="" width="143" height="59">
             <p>{{ $shop->description}}</p>
+            <a target="_blank" href="javascript:void(0)" class="linkToShop"
+               rel="nofollow noopener">
+                <img src="{{ $shop->adm_image }}" alt="логотип магазина {{ $shop->name }}" width="143" height="59">
+            </a>
 
 
             <div class="my-3">
                 <img src="https://image.flaticon.com/icons/svg/2977/2977681.svg" alt="иконка рейтинга магазина"
-                     width="59" height="59">
+                     width="35" height="35">
                 {{ $shop->rating > 0 ? $shop->rating : 'Не определён'}}
             </div>
 
             <div class="my-3">
                 <img src="https://image.flaticon.com/icons/svg/126/126509.svg" alt="телефонный аппарат иконка"
-                     width="59" height="59">
+                     width="35" height="35">
                 {{ $shop->phone  ? $shop->phone : 'Не указан'}}
             </div>
 
 
             <div class="my-3">
-                <img src="https://image.flaticon.com/icons/svg/1150/1150575.svg" width="59" height="59" alt="">
-                {{ $shop->website}}
+                <img src="https://image.flaticon.com/icons/svg/1150/1150575.svg"
+                     width="35" height="35" alt="ссылка на магазин">
+                <a target="_blank" rel="nofollow noopener" href="javascript:void(0)" class="linkToShop">
+                    {{ $shop->website}}
+                </a>
             </div>
 
             <a id="linkToShop"
                rel="nofollow noopener"
                target="_blank"
                href="javascript:void(0)"
-               class="btn btn-primary my-3">
-                Открыть сайт {{ $shop->name}}
+               class="linkToShop btn btn-primary my-3">
+                Перейти на сайт {{ $shop->name}}
             </a>
 
             <div class="d-flex flex-wrap bg-light my-4 py-2">
@@ -99,20 +90,20 @@
 
         <div>
             <h4>Оставить отзыв</h4>
-            <form action="/review" method="post" class="col-12 col-md-6">
+            <form action="#" method="post" class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="name">Имя</label>
-                    <input type="text" name="name" id="" class="form-control" placeholder="">
+                    <input type="text" name="name" id="name" class="form-control" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input type="text" name="email" id="" class="form-control" placeholder="">
+                    <input type="text" name="email" id="email" class="form-control" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="text">Текст отзыва</label>
-                    <textarea class="form-control" name="text" id="" rows="3"></textarea>
+                    <textarea class="form-control" name="text" id="text" rows="3"></textarea>
                 </div>
 
 
@@ -125,4 +116,23 @@
     </div>
 
 
+@endsection
+
+
+@section('script')
+    <script>
+        let links = document.querySelectorAll('.linkToShop');
+        links.forEach(item => {
+            item.addEventListener('click', () => {
+                changeLink(item);
+            });
+        });
+
+        function changeLink(link) {
+            link.href = "{{ $shop->adm_gotolink }}";
+            setTimeout(() => {
+                link.href = 'javascript:void(0)';
+            }, 0);
+        }
+    </script>
 @endsection
