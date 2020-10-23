@@ -37,6 +37,7 @@
             <th scope="col">Slug</th>
             <th scope="col">Popular</th>
             <th scope="col">Admitad Status</th>
+            <th scope="col">Adm Connection Status</th>
             <th scope="col">Description</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
@@ -54,6 +55,7 @@
                 <td>{{ $shop->slug }}</td>
                 <td>{{ $shop->popular === 1 ? 'V': ''  }}</td>
                 <td>{{ $shop->adm_status  }}</td>
+                <td>{{ $shop->adm_connection_status }}</td>
                 <td>{{ Str::limit($shop->description, 80) }}</td>
                 <td><a class="btn btn-primary" href="{{ route('shops.edit', $shop) }}">Edit</a></td>
 
