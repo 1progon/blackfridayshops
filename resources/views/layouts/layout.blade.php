@@ -42,7 +42,7 @@
         <button v-on:click="(showCats = !showCats), scrollToActiveCategory()"
                 id="show-sidebar-btn"
                 type="button"
-                class="btn btn-primary m-2 mt-5 btn-block">
+                class="btn btn-primary m-2 btn-block">
             Категории
             <img v-if="showCats" src="{{ asset('imgs/down-chevron.svg') }}" alt="" width="16" height="16">
             <img v-else src="{{ asset('imgs/up-chevron.svg') }}" alt="" width="16" height="16">
