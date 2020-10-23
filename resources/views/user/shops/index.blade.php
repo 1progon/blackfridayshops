@@ -54,7 +54,7 @@
                 <td>{{ $shop->slug }}</td>
                 <td>{{ $shop->popular === 1 ? 'V': ''  }}</td>
                 <td>{{ $shop->adm_status  }}</td>
-                <td>{{ $shop->description }}</td>
+                <td>{{ Str::limit($shop->description, 80) }}</td>
                 <td><a class="btn btn-primary" href="{{ route('shops.edit', $shop) }}">Edit</a></td>
 
                 {{--TODO Need delete method form--}}

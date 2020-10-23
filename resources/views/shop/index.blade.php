@@ -11,6 +11,6 @@
     @empty
     @endforelse
 
-    {{$shops->links()}}
+    {{ $shops->links()}}
 
 @endsection

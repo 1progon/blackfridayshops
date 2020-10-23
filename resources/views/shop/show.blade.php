@@ -35,9 +35,9 @@
 @section('main')
     <div class="p-2">
         <div>
-            <h1 class="h1">{{$shop->name}}</h1>
-            <img src="{{$shop->adm_image}}" alt="" width="143" height="59">
-            <p>{{$shop->description}}</p>
+            <h1 class="h1">{{ $shop->name}}</h1>
+            <img src="{{ $shop->adm_image}}" alt="" width="143" height="59">
+            <p>{{ $shop->description}}</p>
 
 
             <div class="my-3">
@@ -55,7 +55,7 @@
 
             <div class="my-3">
                 <img src="https://image.flaticon.com/icons/svg/1150/1150575.svg" width="59" height="59" alt="">
-                {{$shop->website}}
+                {{ $shop->website}}
             </div>
 
             <a id="linkToShop"
@@ -63,7 +63,7 @@
                target="_blank"
                href="javascript:void(0)"
                class="btn btn-primary my-3">
-                Открыть сайт {{$shop->name}}
+                Открыть сайт {{ $shop->name}}
             </a>
 
             <div class="d-flex flex-wrap bg-light my-4 py-2">
