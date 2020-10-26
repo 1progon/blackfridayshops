@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('main')
-    <div class="container">
+    <div class="container my-4">
         <h2>Контакты</h2>
 
         @if( session('sendMessageStatus'))
