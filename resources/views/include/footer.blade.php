@@ -1,8 +1,9 @@
 <div class="bg-dark text-light">
     <div class="container">
-        <div class="row">
+        <div class="row py-3">
             <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                <div><a href="/about">О сайте</a></div>
+                <div><a href="{{ route('page.about') }}">О сайте</a></div>
+                <div><a href="{{ route('page.contact') }}">Контакты</a></div>
 {{--                @auth--}}
 
 {{--                    <input class="btn btn-link" type="submit" name="" id="" value="Выйти" form="logout">--}}
@@ -21,8 +22,8 @@
 
             <div class="col-12 col-md-4 mb-2 mb-sm-0">
                 <div><a href="/">Популярные магазины</a></div>
-                <div><a href="/shops">Все магазины</a></div>
-                <div><a href="/categories">Главные категории</a></div>
+                <div><a href="{{ route('front.shops.index') }}">Все магазины</a></div>
+                <div><a href="{{ route('front.categories.index') }}">Главные категории</a></div>
                 <div></div>
             </div>
 
@@ -32,7 +33,6 @@
 
                 <div><a href="/blog">Блог</a></div>
 
-                <div><a href="/contact">Контакты</a></div>
             </div>
         </div>
     </div>

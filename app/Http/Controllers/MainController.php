@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Mail\ContactMessage;
 use App\Shop;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Mail;
 
 class MainController extends Controller
 {
@@ -20,5 +24,22 @@ class MainController extends Controller
 
 
         return view('home', compact('topShops', 'mainCats'));
+    }
+
+
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function sendContactMessage(Request $request)
+    {
+
+        $message = $request->all();
+
+        Mail::to(config('mail.from.address'))->send(new ContactMessage($message));
+
+
+        return redirect()->route('page.contact')->with('sendMessageStatus', 'Сообщение успешно отправлено!');
+
     }
 }

@@ -18,19 +18,28 @@ Auth::routes();
 
 Route::get('/', 'MainController@index')->name('homepage');
 
-Route::view('/unauthorized', 'unauthorized')->name('unauthorized');
 
+//Pages
+Route::view('about', 'page.about')->name('page.about');
 
+Route::view('contact', 'page.contact')->name('page.contact');
+Route::post('contact', 'MainController@sendContactMessage')->name('page.contact.send');
+
+Route::view('unauthorized', 'unauthorized')->name('unauthorized');
+
+//Front Categories
 Route::get('/categories', 'CategoriesController@index')->name('front.categories.index');
 Route::get('/shops', 'ShopsController@index')->name('front.shops.index');
 
 Route::get('/category/{category}/{sub_category?}', 'CategoriesController@show')
     ->name('category');
 
+//Front Shops
 Route::get('/{shop}', 'ShopsController@show')
     ->name('front.shops.show');
 
 
+//Admin routes
 Route::prefix('admin')
     ->middleware(['auth', 'userOnlyActive'])
     ->group(function () {
