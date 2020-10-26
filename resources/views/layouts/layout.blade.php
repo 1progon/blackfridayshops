@@ -60,7 +60,7 @@
                 @include('include.add-site')
             </div>
             @yield('bread')
-            @yield('main')
+            <div class="main-content">@yield('main')</div>
 
             <footer>
                 @include('include.footer')

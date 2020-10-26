@@ -61,6 +61,17 @@ a.my-card {
 main {
     background-color: white;
     z-index: 4;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.main-content > * {
+    margin: 0 auto;
 }
 
 
