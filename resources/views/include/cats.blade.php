@@ -1,6 +1,6 @@
 @php
-    use App\Http\Controllers\CategoriesController;
 
+    use App\Http\Controllers\Category\CategoriesController;
     $cats = (new CategoriesController())->index(true)->sortBy('position');
 @endphp
 
