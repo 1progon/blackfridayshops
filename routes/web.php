@@ -28,14 +28,14 @@ Route::post('contact', 'MainController@sendContactMessage')->name('page.contact.
 Route::view('unauthorized', 'unauthorized')->name('unauthorized');
 
 //Front Categories
-Route::get('/categories', 'CategoriesController@index')->name('front.categories.index');
-Route::get('/shops', 'ShopsController@index')->name('front.shops.index');
+Route::get('/categories', 'Category\CategoriesController@index')->name('front.categories.index');
+Route::get('/shops', 'Shop\ShopsController@index')->name('front.shops.index');
 
-Route::get('/category/{category}/{sub_category?}', 'CategoriesController@show')
+Route::get('/category/{category}/{sub_category?}', 'Category\CategoriesController@show')
     ->name('category');
 
 //Front Shops
-Route::get('/{shop}', 'ShopsController@show')
+Route::get('/{shop}', 'Shop\ShopsController@show')
     ->name('front.shops.show');
 
 
