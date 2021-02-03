@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Model\Category;
 
+use App\Model\Shop\Shop;
 use Illuminate\Database\Eloquent\Model;
 
 class SubCategory extends Model
