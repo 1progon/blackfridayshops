@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Shop;
+use App\Model\Shop\Shop;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -130,7 +130,6 @@ class AdminShopsController extends Controller
 
 
     /**
-     * @param Request $request
      * @param Shop $shop
      * @return RedirectResponse
      */

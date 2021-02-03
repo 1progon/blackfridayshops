@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Mail\ContactMessage;
-use App\Shop;
+use App\Model\Category\Category;
+use App\Model\Shop\Shop;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Mail;

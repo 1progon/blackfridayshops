@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Shop;
-use App\SubCategory;
+use App\Model\Category\Category;
+use App\Model\Category\SubCategory;
+use App\Model\Shop\Shop;
 use Cache;
 use GuzzleHttp\Client;
 use Str;

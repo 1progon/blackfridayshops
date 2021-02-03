@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Shop;
 
-use App\Category;
-use App\Shop;
-use App\SubCategory;
+use App\Http\Controllers\Controller;
+use App\Model\Shop\Shop;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class ShopsController extends Controller
@@ -28,7 +28,7 @@ class ShopsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -38,8 +38,8 @@ class ShopsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -70,7 +70,7 @@ class ShopsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Shop $shop
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(Shop $shop)
     {
@@ -80,9 +80,9 @@ class ShopsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param Shop $shop
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, Shop $shop)
     {
@@ -93,7 +93,7 @@ class ShopsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Shop $shop
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(Shop $shop)
     {
